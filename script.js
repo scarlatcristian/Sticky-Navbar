@@ -1,7 +1,7 @@
 "use strict";
 
 const nav = document.querySelector(".nav");
-const navElements = document.querySelectorAll("li");
+const links = document.querySelectorAll("a");
 
 const fixNav = () => {
   if (window.scrollY > nav.offsetHeight + 150) nav.classList.add("active");
@@ -11,11 +11,14 @@ const fixNav = () => {
 
 window.addEventListener("scroll", fixNav);
 
-navElements.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const current = document.querySelector(".current");
-    current.classList.remove("current");
-    link.classList.add("current");
+links.forEach((link) => {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    links.forEach((link) => {
+      link.classList.remove("current");
+    });
+
+    event.target.classList.add("current");
   });
 });
